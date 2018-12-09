@@ -1,12 +1,12 @@
 #!groovy
-@Library('Utilities@1.5')_
+//@Library('Utilities@1.5')_
 node ('worker_node1') {
 try {
       stage('Source') {
          // always run with a new workspace
          cleanupWs()
          checkout scm
-         stash name: 'test-sources', includes: 'build.gradle,src/test/'
+        // stash name: 'test-sources', includes: 'build.gradle,src/test/'
       }
       stage('Build') {
          // Run the gradle build
@@ -24,8 +24,8 @@ try {
             worker3: { node ('worker_node3'){
                // always run with a new workspace
                cleanupWs()
-               unstash 'test-sources'
-               gbuild2 '-D test.single=TestExample2 test'
+              // unstash 'test-sources'
+              // gbuild2 '-D test.single=TestExample2 test'
             }},
          )
       } 
@@ -34,6 +34,6 @@ try {
       echo "Caught: ${err}"
    }
    stage ('Notify') {
-      // mailUser('<your email address>', "Finished")
+       mailUser('bastiaan.anink@xs4all.nl', "Finished")
    }
 }
