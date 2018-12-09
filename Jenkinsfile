@@ -34,6 +34,6 @@ try {
       echo "Caught: ${err}"
    }
    stage ('Notify') {
-       mailUser('bastiaan.anink@xs4all.nl', "Finished")
+     //  mailUser('bastiaan.anink@xs4all.nl', "Finished")
    }
 }
